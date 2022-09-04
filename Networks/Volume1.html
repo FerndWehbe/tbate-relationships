@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vis-network@latest/styles/vis-network.css" type="text/css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vis-network@latest/dist/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1800px;
+            height: 920px;
+            background-color: #121212;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"betweenness_centrality": 0.039195906432748534, "closeness_centrality": 0.5882352941176471, "degree_centrality": 0.35000000000000003, "font": {"color": "white"}, "group": 0, "id": "Alice", "label": "Alice", "shape": "dot", "size": 7}, {"betweenness_centrality": 0.4770405179615705, "closeness_centrality": 0.8333333333333334, "degree_centrality": 0.8, "font": {"color": "white"}, "group": 1, "id": "Arthur", "label": "Arthur", "shape": "dot", "size": 16}, {"betweenness_centrality": 0.06521720969089388, "closeness_centrality": 0.6060606060606061, "degree_centrality": 0.4, "font": {"color": "white"}, "group": 2, "id": "Reynolds", "label": "Reynolds", "shape": "dot", "size": 8}, {"betweenness_centrality": 0.10672932330827067, "closeness_centrality": 0.6060606060606061, "degree_centrality": 0.4, "font": {"color": "white"}, "group": 2, "id": "Durden", "label": "Durden", "shape": "dot", "size": 8}, {"betweenness_centrality": 0.011622807017543858, "closeness_centrality": 0.45454545454545453, "degree_centrality": 0.30000000000000004, "font": {"color": "white"}, "group": 2, "id": "Angela", "label": "Angela", "shape": "dot", "size": 6}, {"betweenness_centrality": 0.01881578947368421, "closeness_centrality": 0.5714285714285714, "degree_centrality": 0.35000000000000003, "font": {"color": "white"}, "group": 0, "id": "Vincent", "label": "Vincent", "shape": "dot", "size": 7}, {"betweenness_centrality": 0.006973684210526315, "closeness_centrality": 0.5555555555555556, "degree_centrality": 0.30000000000000004, "font": {"color": "white"}, "group": 0, "id": "Tabitha", "label": "Tabitha", "shape": "dot", "size": 6}, {"betweenness_centrality": 0.009035087719298245, "closeness_centrality": 0.5405405405405406, "degree_centrality": 0.30000000000000004, "font": {"color": "white"}, "group": 0, "id": "Lilia", "label": "Lilia", "shape": "dot", "size": 6}, {"betweenness_centrality": 0.052015455304928994, "closeness_centrality": 0.5714285714285714, "degree_centrality": 0.30000000000000004, "font": {"color": "white"}, "group": 2, "id": "Adam", "label": "Adam", "shape": "dot", "size": 6}, {"betweenness_centrality": 0.008947368421052631, "closeness_centrality": 0.5405405405405406, "degree_centrality": 0.30000000000000004, "font": {"color": "white"}, "group": 1, "id": "Sylvia", "label": "Sylvia", "shape": "dot", "size": 6}, {"betweenness_centrality": 0.05159983291562239, "closeness_centrality": 0.6060606060606061, "degree_centrality": 0.35000000000000003, "font": {"color": "white"}, "group": 1, "id": "Tessia", "label": "Tessia", "shape": "dot", "size": 7}, {"betweenness_centrality": 0.030121136173767757, "closeness_centrality": 0.4878048780487805, "degree_centrality": 0.1, "font": {"color": "white"}, "group": 1, "id": "Alduin", "label": "Alduin", "shape": "dot", "size": 2}, {"betweenness_centrality": 0.06461570593149542, "closeness_centrality": 0.5263157894736842, "degree_centrality": 0.25, "font": {"color": "white"}, "group": 1, "id": "Virion", "label": "Virion", "shape": "dot", "size": 5}, {"betweenness_centrality": 0.0, "closeness_centrality": 0.47619047619047616, "degree_centrality": 0.1, "font": {"color": "white"}, "group": 1, "id": "Rinia", "label": "Rinia", "shape": "dot", "size": 2}, {"betweenness_centrality": 0.0, "closeness_centrality": 0.5, "degree_centrality": 0.2, "font": {"color": "white"}, "group": 1, "id": "Feyrith", "label": "Feyrith", "shape": "dot", "size": 4}, {"betweenness_centrality": 0.0668421052631579, "closeness_centrality": 0.6060606060606061, "degree_centrality": 0.5, "font": {"color": "white"}, "group": 0, "id": "Sylvie", "label": "Sylvie", "shape": "dot", "size": 10}, {"betweenness_centrality": 0.0017543859649122805, "closeness_centrality": 0.5, "degree_centrality": 0.2, "font": {"color": "white"}, "group": 0, "id": "Eleanor", "label": "Eleanor", "shape": "dot", "size": 4}, {"betweenness_centrality": 0.0, "closeness_centrality": 0.4878048780487805, "degree_centrality": 0.15000000000000002, "font": {"color": "white"}, "group": 0, "id": "Cynthia", "label": "Cynthia", "shape": "dot", "size": 3}, {"betweenness_centrality": 0.002631578947368421, "closeness_centrality": 0.43478260869565216, "degree_centrality": 0.25, "font": {"color": "white"}, "group": 2, "id": "Helen", "label": "Helen", "shape": "dot", "size": 5}, {"betweenness_centrality": 0.0, "closeness_centrality": 0.40816326530612246, "degree_centrality": 0.2, "font": {"color": "white"}, "group": 2, "id": "Jasmine", "label": "Jasmine", "shape": "dot", "size": 4}, {"betweenness_centrality": 0.002631578947368421, "closeness_centrality": 0.36363636363636365, "degree_centrality": 0.1, "font": {"color": "white"}, "group": 1, "id": "Merial", "label": "Merial", "shape": "dot", "size": 2}]);
+        edges = new vis.DataSet([{"from": "Alice", "label": 1, "to": "Arthur", "value": 75, "weight": 1}, {"from": "Alice", "label": 1, "to": "Reynolds", "value": 34, "weight": 1}, {"from": "Alice", "label": 1, "to": "Durden", "value": 10, "weight": 1}, {"from": "Alice", "label": 1, "to": "Angela", "value": 5, "weight": 1}, {"from": "Alice", "label": 1, "to": "Vincent", "value": 40, "weight": 1}, {"from": "Alice", "label": 1, "to": "Tabitha", "value": 44, "weight": 1}, {"from": "Alice", "label": 1, "to": "Lilia", "value": 27, "weight": 1}, {"from": "Arthur", "label": 1, "to": "Reynolds", "value": 19, "weight": 1}, {"from": "Arthur", "label": 1, "to": "Durden", "value": 5, "weight": 1}, {"from": "Arthur", "label": 1, "to": "Adam", "value": 10, "weight": 1}, {"from": "Arthur", "label": 1, "to": "Sylvia", "value": 50, "weight": 1}, {"from": "Arthur", "label": 1, "to": "Tessia", "value": 50, "weight": 1}, {"from": "Arthur", "label": 1, "to": "Alduin", "value": 5, "weight": 1}, {"from": "Arthur", "label": 1, "to": "Virion", "value": 10, "weight": 1}, {"from": "Arthur", "label": 1, "to": "Rinia", "value": 20, "weight": 1}, {"from": "Arthur", "label": 1, "to": "Feyrith", "value": 10, "weight": 1}, {"from": "Arthur", "label": 1, "to": "Lilia", "value": 47, "weight": 1}, {"from": "Arthur", "label": 1, "to": "Vincent", "value": 51, "weight": 1}, {"from": "Arthur", "label": 1, "to": "Tabitha", "value": 66, "weight": 1}, {"from": "Arthur", "label": 1, "to": "Sylvie", "value": 70, "weight": 1}, {"from": "Arthur", "label": 1, "to": "Eleanor", "value": 25, "weight": 1}, {"from": "Arthur", "label": 1, "to": "Cynthia", "value": 47, "weight": 1}, {"from": "Reynolds", "label": 1, "to": "Helen", "value": 5, "weight": 1}, {"from": "Reynolds", "label": 1, "to": "Adam", "value": 10, "weight": 1}, {"from": "Reynolds", "label": 1, "to": "Angela", "value": 15, "weight": 1}, {"from": "Reynolds", "label": 1, "to": "Durden", "value": 15, "weight": 1}, {"from": "Reynolds", "label": 1, "to": "Vincent", "value": 5, "weight": 1}, {"from": "Reynolds", "label": 1, "to": "Tabitha", "value": 6, "weight": 1}, {"from": "Helen", "label": 1, "to": "Adam", "value": 20, "weight": 1}, {"from": "Helen", "label": 1, "to": "Angela", "value": 35, "weight": 1}, {"from": "Helen", "label": 1, "to": "Durden", "value": 31, "weight": 1}, {"from": "Helen", "label": 1, "to": "Jasmine", "value": 51, "weight": 1}, {"from": "Adam", "label": 1, "to": "Jasmine", "value": 32, "weight": 1}, {"from": "Adam", "label": 1, "to": "Durden", "value": 21, "weight": 1}, {"from": "Adam", "label": 1, "to": "Angela", "value": 21, "weight": 1}, {"from": "Jasmine", "label": 1, "to": "Durden", "value": 36, "weight": 1}, {"from": "Jasmine", "label": 1, "to": "Angela", "value": 16, "weight": 1}, {"from": "Durden", "label": 1, "to": "Angela", "value": 31, "weight": 1}, {"from": "Durden", "label": 1, "to": "Tessia", "value": 5, "weight": 1}, {"from": "Sylvia", "label": 1, "to": "Sylvie", "value": 51, "weight": 1}, {"from": "Sylvia", "label": 1, "to": "Tessia", "value": 30, "weight": 1}, {"from": "Sylvia", "label": 1, "to": "Virion", "value": 20, "weight": 1}, {"from": "Sylvia", "label": 1, "to": "Feyrith", "value": 5, "weight": 1}, {"from": "Sylvia", "label": 1, "to": "Eleanor", "value": 5, "weight": 1}, {"from": "Sylvie", "label": 1, "to": "Tessia", "value": 11, "weight": 1}, {"from": "Sylvie", "label": 1, "to": "Virion", "value": 6, "weight": 1}, {"from": "Sylvie", "label": 1, "to": "Feyrith", "value": 10, "weight": 1}, {"from": "Sylvie", "label": 1, "to": "Eleanor", "value": 25, "weight": 1}, {"from": "Sylvie", "label": 1, "to": "Lilia", "value": 62, "weight": 1}, {"from": "Sylvie", "label": 1, "to": "Tabitha", "value": 36, "weight": 1}, {"from": "Sylvie", "label": 1, "to": "Vincent", "value": 25, "weight": 1}, {"from": "Sylvie", "label": 1, "to": "Cynthia", "value": 10, "weight": 1}, {"from": "Tessia", "label": 1, "to": "Virion", "value": 10, "weight": 1}, {"from": "Tessia", "label": 1, "to": "Rinia", "value": 10, "weight": 1}, {"from": "Tessia", "label": 1, "to": "Feyrith", "value": 26, "weight": 1}, {"from": "Alduin", "label": 1, "to": "Merial", "value": 6, "weight": 1}, {"from": "Merial", "label": 1, "to": "Virion", "value": 6, "weight": 1}, {"from": "Vincent", "label": 1, "to": "Tabitha", "value": 71, "weight": 1}, {"from": "Vincent", "label": 1, "to": "Lilia", "value": 50, "weight": 1}, {"from": "Vincent", "label": 1, "to": "Eleanor", "value": 5, "weight": 1}, {"from": "Tabitha", "label": 1, "to": "Lilia", "value": 108, "weight": 1}, {"from": "Lilia", "label": 1, "to": "Cynthia", "value": 5, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

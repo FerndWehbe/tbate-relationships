@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "tbate-relationships"
+version = "0.1.0"
+description = ""
+authors = ["FerndWehbe <fernandowehbe@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+jupyterlab = "^3.4.5"
+selenium = "^4.4.3"
+webdriver-manager = "^3.8.3"
+pandas = "^1.4.4"
+jupyterlab-lsp = "^3.10.2"
+spacy = "^3.4.1"
+networkx = "^2.8.6"
+matplotlib = "^3.5.3"
+pyvis = "^0.2.1"
+python-louvain = "^0.16"
+pylama = "^8.4.1"
+black = "^22.8.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
