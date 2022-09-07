@@ -44,7 +44,9 @@ Analyze relationships between characters in the light novel The Beginning after 
 
 
 *The size of node represent how much connections.*
+
 *The width of links represent how much iteration these persons have.*
+
 *The color represent a **local community**.*
 
 
