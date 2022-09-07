@@ -43,6 +43,14 @@ Analyze relationships between characters in the light novel The Beginning after 
 
 
 
-*The size of node represent how much connections this.*
+*The size of node represent how much connections.*
 *The width of links represent how much iteration these persons have.*
 *The color represent a **local community**.*
+
+
+
+# Credits
+
+This project is based on *Network of The Witcher* create by [Thu Vu data analytics](https://www.youtube.com/c/Thuvu5)
+
+Link of the Video: https://www.youtube.com/watch?v=fAHkJ_Dhr50
